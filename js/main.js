@@ -3,67 +3,67 @@
  */
 window.onload = function () {
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
-    var player;
-    var platforms;
+    var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {preload: preload, create: create, update: update});
     var cursors;
-    var jumpButton;
+    var map;
+    var player;
+    var platformsLayer;
 
     function preload() {
 
-        game.stage.backgroundColor = '#85b5e1';
-
-        game.load.baseURL = 'http://examples.phaser.io/assets/';
-        game.load.crossOrigin = 'anonymous';
-
-        game.load.image('player', 'sprites/phaser-dude.png');
-        game.load.image('platform', 'sprites/platform.png');
-
+        game.load.tilemap('mapTiled', 'assets/tileMap.json', null, Phaser.Tilemap.TILED_JSON);
+        game.load.image('platforms', 'assets/platformTile.png');
+        game.load.spritesheet('player', 'assets/player.png', 16, 23, 4);
     }
 
     function create() {
 
-        player = game.add.sprite(100, 200, 'player');
+        // Tiled
+        game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        game.physics.arcade.enable(player);
+        map = game.add.tilemap('mapTiled');
+        map.addTilesetImage('platformTile', 'platforms');
+        map.setCollisionBetween(0, 3);
+        map.setCollisionBetween(5, 12);
+        map.setCollisionBetween(12, 17);
 
-        player.body.collideWorldBounds = true;
-        player.body.gravity.y = 500;
+        platformsLayer = map.createLayer('platforms');
+        platformsLayer.resizeWorld();
 
-        platforms = game.add.physicsGroup();
+        player = game.add.sprite(256, 256, 'player');
 
-        platforms.create(500, 150, 'platform');
-        platforms.create(-200, 300, 'platform');
-        platforms.create(400, 450, 'platform');
+        game.physics.enable(player);
+        game.physics.arcade.gravity.y = 250;
 
-        platforms.setAll('body.immovable', true);
+        //player.body.collideWorldBounds = true;
+        game.camera.follow(player);
 
         cursors = game.input.keyboard.createCursorKeys();
-        jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+
+        player.animations.add('walk');
+
+        player.animations.play('walk', 10, true);
 
     }
 
 
     function update() {
 
-        game.physics.arcade.collide(player, platforms);
+        game.physics.arcade.collide(player, platformsLayer);
 
         player.body.velocity.x = 0;
 
+        if (cursors.up.isDown) {
+            if (player.body.onFloor()) {
+                player.body.velocity.y = -200;
+            }
+        }
+
         if (cursors.left.isDown) {
-            player.body.velocity.x = -250;
+            player.body.velocity.x = -150;
+        } else if (cursors.right.isDown) {
+            player.body.velocity.x = 150;
         }
-        else if (cursors.right.isDown) {
-            player.body.velocity.x = 250;
-        }
-
-        if (jumpButton.isDown && (player.body.onFloor() || player.body.touching.down)) {
-            player.body.velocity.y = -400;
-        }
-    }
-
-    function render() {
-
     }
 
 };

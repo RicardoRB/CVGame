@@ -1,0 +1,56 @@
+{ "height":6,
+ "layers":[
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, 6, 6, 6, 6, 6, 6, 6, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":6,
+         "name":"platforms",
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }],
+ "nextobjectid":1,
+ "orientation":"orthogonal",
+ "properties":
+    {
+
+    },
+ "renderorder":"right-down",
+ "tileheight":128,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "image":"platformTile.png",
+         "imageheight":256,
+         "imagewidth":1152,
+         "margin":0,
+         "name":"platformTile",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":128,
+         "tilewidth":128
+        }, 
+        {
+         "firstgid":19,
+         "image":"BG.png",
+         "imageheight":768,
+         "imagewidth":1024,
+         "margin":0,
+         "name":"BG",
+         "properties":
+            {
+
+            },
+         "spacing":0,
+         "tileheight":768,
+         "tilewidth":1024
+        }],
+ "tilewidth":128,
+ "version":1,
+ "width":20
+}
