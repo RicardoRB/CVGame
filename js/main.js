@@ -3,17 +3,27 @@
  */
 window.onload = function () {
 
-    var game = new Phaser.Game(1024, 768, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+    var screenWidth = 1024;
+    var screenHeight = 768;
+
+    var game = new Phaser.Game(screenWidth, screenHeight, Phaser.AUTO, '', {
+        preload: preload,
+        create: create,
+        update: update
+    });
     var cursors;
     var map;
     var player;
     var platformsLayer;
+    var background;
+    var waterLayer;
 
     function preload() {
 
         game.load.tilemap('mapTiled', 'assets/tileMap.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('platforms', 'assets/platformTile.png');
-        game.load.spritesheet('player', 'assets/player.png', 16, 23, 4);
+        game.load.image('background', 'assets/BG.png');
+        game.load.spritesheet('player', 'assets/player.png', 32, 46, 4);
     }
 
     function create() {
@@ -21,28 +31,30 @@ window.onload = function () {
         // Tiled
         game.physics.startSystem(Phaser.Physics.ARCADE);
 
+        background = game.add.tileSprite(0, 0, game.cache.getImage('background').width, game.cache.getImage('background').height, 'background');
+        background.fixedToCamera = true;
         map = game.add.tilemap('mapTiled');
+        //(name of tileset, name cache key
         map.addTilesetImage('platformTile', 'platforms');
-        map.setCollisionBetween(0, 3);
-        map.setCollisionBetween(5, 12);
-        map.setCollisionBetween(12, 17);
+
 
         platformsLayer = map.createLayer('platforms');
+        waterLayer = map.createLayer('platforms');
         platformsLayer.resizeWorld();
+
+        map.setCollisionByExclusion([5, 14], true, platformsLayer);
 
         player = game.add.sprite(256, 256, 'player');
 
         game.physics.enable(player);
         game.physics.arcade.gravity.y = 250;
+        player.anchor.setTo(.5);
 
-        //player.body.collideWorldBounds = true;
         game.camera.follow(player);
 
         cursors = game.input.keyboard.createCursorKeys();
 
         player.animations.add('walk');
-
-        player.animations.play('walk', 10, true);
 
     }
 
@@ -53,16 +65,30 @@ window.onload = function () {
 
         player.body.velocity.x = 0;
 
+        // Move background image at player position
+        background.x = player.x;
+
         if (cursors.up.isDown) {
             if (player.body.onFloor()) {
-                player.body.velocity.y = -200;
+                player.body.velocity.y = -300;
             }
         }
 
         if (cursors.left.isDown) {
+            background.tilePosition.x += 1;
             player.body.velocity.x = -150;
+            // Flip
+
+            player.scale.setTo(-1, 1);
+            player.animations.play('walk', 10, true);
         } else if (cursors.right.isDown) {
+            background.tilePosition.x -= 1;
             player.body.velocity.x = 150;
+            // Flip
+            player.scale.setTo(1, 1);
+            player.animations.play('walk', 10, true);
+        } else {
+            player.animations.stop(null, true);
         }
     }
 

@@ -3,12 +3,14 @@
  <tileset firstgid="1" name="platformTile" tilewidth="128" tileheight="128">
   <image source="platformTile.png" width="1152" height="256"/>
  </tileset>
- <tileset firstgid="19" name="BG" tilewidth="1024" tileheight="768">
-  <image source="BG.png" width="1024" height="768"/>
- </tileset>
+ <layer name="water" width="20" height="6">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFQw2wEsCMQMwGxPxADAAHCAA/
+  </data>
+ </layer>
  <layer name="platforms" width="20" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwkwAjEbAcxPgnkAEGQAQQ==
+   eJxjYBgF9ALMQMyDhFmwqGEEYjYCmJ8EOwEigABs
   </data>
  </layer>
 </map>
