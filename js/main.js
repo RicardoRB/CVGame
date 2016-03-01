@@ -17,13 +17,16 @@ window.onload = function () {
     var platformsLayer;
     var background;
     var waterLayer;
+    var terrainLayer;
 
     function preload() {
 
         game.load.tilemap('mapTiled', 'assets/tileMap.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image('platforms', 'assets/platformTile.png');
+        game.load.image('terrain', 'assets/objectsTile.png');
         game.load.image('background', 'assets/BG.png');
         game.load.spritesheet('player', 'assets/player.png', 32, 46, 4);
+
     }
 
     function create() {
@@ -34,12 +37,14 @@ window.onload = function () {
         background = game.add.tileSprite(0, 0, game.cache.getImage('background').width, game.cache.getImage('background').height, 'background');
         background.fixedToCamera = true;
         map = game.add.tilemap('mapTiled');
-        //(name of tileset, name cache key
+        //(name of tileset, name cache key)
         map.addTilesetImage('platformTile', 'platforms');
+        map.addTilesetImage('objectsTile', 'terrain');
 
 
+        terrainLayer = map.createLayer('terrain');
+        waterLayer = map.createLayer('water');
         platformsLayer = map.createLayer('platforms');
-        waterLayer = map.createLayer('platforms');
         platformsLayer.resizeWorld();
 
         map.setCollisionByExclusion([5, 14], true, platformsLayer);

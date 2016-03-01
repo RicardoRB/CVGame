@@ -1,0 +1,18 @@
+html {
+linear-gradient(27 deg, #151515 5 px, transparent 5 px) 0 5 px,
+linear-gradient(207 deg, #151515 5 px, transparent 5 px) 10 px 0 px,
+linear-gradient(27 deg, #222 5 px, transparent 5 px) 0 px 10 px,
+linear-gradient(207 deg, #222 5 px, transparent 5 px) 10 px 5 px,
+linear-gradient(90 deg, #1b1b1b 10 px, transparent 10 px),
+linear-gradient(#1d1d1d 25 %, #1a1a1a 25 %, #1a1a1a 50 %, transparent 50 %, transparent 75 %, #242424 75 %, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}

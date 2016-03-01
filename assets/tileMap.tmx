@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="6" tilewidth="128" tileheight="128" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="40" height="6" tilewidth="128" tileheight="128" nextobjectid="1">
  <tileset firstgid="1" name="platformTile" tilewidth="128" tileheight="128">
   <image source="platformTile.png" width="1152" height="256"/>
  </tileset>
- <layer name="water" width="20" height="6">
+ <tileset firstgid="19" name="objectsTile" tilewidth="128" tileheight="128">
+  <image source="objectsTile.png" width="1408" height="128"/>
+ </tileset>
+ <layer name="water" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQw2wEsCMQMwGxPxADAAHCAA/
+   eJxjYBgFo2AUsOLAlOgl1Rx8gA8HBgAvuACg
   </data>
  </layer>
- <layer name="platforms" width="20" height="6">
+ <layer name="platforms" width="40" height="6">
   <data encoding="base64" compression="zlib">
-   eJxjYBgF9ALMQMyDhFmwqGEEYjYCmJ8EOwEigABs
+   eJxjYBgFQwEwAjEbEPMPtEOQAMxNIMwJxAJAzIUkhsutzEDMA8QsJNoH0wfD2PRjcxMuTIxbkc3DhQnFCXLccQOxEBmYF4fZAMzHAqM=
+  </data>
+ </layer>
+ <layer name="terrain" width="40" height="6">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFMCA+0A5AA8JImBhxZCBGpp0iUFoUj7kwTAwgRr0sElsaiS1DpB0gIEGC2uEEANhGAbk=
   </data>
  </layer>
 </map>
